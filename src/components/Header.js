@@ -14,11 +14,12 @@ const Header = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     const result = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${e.target.query.value}&type=video&maxResults=20&key=AIzaSyD4q3HFuGrKvo7qpB0-wsJYWnKiWwZGILM`
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${e.target.query.value}&type=video&maxResults=20&key=${process.env.REACT_APP_YT_KEY}`
     );
     const parsed = await result.json();
 
     dispatch(setResults(parsed));
+
     if (window.location !== "/") {
       navigate("/");
     }
